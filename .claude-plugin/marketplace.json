@@ -1,0 +1,15 @@
+{
+  "name": "banan-agency",
+  "owner": {
+    "name": "Nathan Van Bignoot",
+    "email": "nathan.vanbignoot@bananagency.fr"
+  },
+  "plugins": [
+    {
+      "name": "exocortex",
+      "source": "./",
+      "description": "Navigation, recherche et écriture dans le coffre Obsidian Exocortex : clients, entreprises, prospects et personnalité.",
+      "version": "0.4.0"
+    }
+  ]
+}

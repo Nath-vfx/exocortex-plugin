@@ -4,6 +4,15 @@ Navigation, recherche et écriture dans le coffre Obsidian **Exocortex** de Nath
 mémoire externe sur ses clients et leurs entreprises (notes Markdown à frontmatter YAML,
 reliées par des wikilinks `[[…]]`).
 
+## Installation
+
+Distribué via la marketplace `banan-agency` (`.claude-plugin/marketplace.json`) :
+
+```
+/plugin marketplace add <repo>
+/plugin install exocortex@banan-agency
+```
+
 ## Architecture
 
 Un skill **routeur généraliste** + trois **sous-skills** spécialisés et autonomes :
