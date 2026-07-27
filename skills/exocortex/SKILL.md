@@ -1,15 +1,15 @@
 ---
 name: exocortex
 description: >
-  Point d'entrée généraliste du coffre Obsidian "Exocortex" de Nathan (sa mémoire
+  Point d'entrée généraliste du coffre Obsidian "Exocortex" de l'utilisateur (sa mémoire
   externe sur ses clients et leurs entreprises, en notes Markdown/YAML). Utilise ce
-  skill DÈS QU'on cherche ou met à jour une info propre à Nathan, à un de ses clients
+  skill DÈS QU'on cherche ou met à jour une info propre à l'utilisateur, à un de ses clients
   ou à la société d'un client : téléphone, email, adresse, SIRET/SIREN, TVA, statut,
   budget ou avancement d'un projet, dirigeant, lien Notion, suivi d'un dossier — ou
   pour « retrouve dans mon Exocortex / mes notes / mon coffre ». Ce skill localise le
   coffre, fait les recherches simples, et AIGUILLE vers le bon sous-skill : exocortex-
   clients, exocortex-entreprises (infos légales), exocortex-prospects (ajout/conversion)
-  et exocortex-personnalite (infos sur Nathan, et écrire dans sa voix). En cas de doute,
+  et exocortex-personnalite (infos sur l'utilisateur, et écrire dans sa voix). En cas de doute,
   passe d'abord par ici. NE
   PAS utiliser pour des infos publiques sur des tiers (SIRET/adresse d'une enseigne,
   numéro d'une administration → web), des questions générales (taux de TVA, syntaxe
@@ -18,7 +18,7 @@ description: >
 
 # Exocortex — aiguilleur
 
-L'Exocortex est le coffre Obsidian de Nathan : sa mémoire externe sur ses clients et
+L'Exocortex est le coffre Obsidian de l'utilisateur : sa mémoire externe sur ses clients et
 leurs entreprises. Ce skill est le **point d'entrée**. Son rôle : localiser le coffre,
 répondre vite aux recherches simples, et **router** les demandes spécialisées vers le
 sous-skill compétent. Garde-le léger ; la logique métier détaillée vit dans les
@@ -46,7 +46,7 @@ la structure : recense-la avec `index` avant d'agir.
 
 ## Étape 1 — comprendre l'intention et router
 
-Identifie ce que veut Nathan, puis agis selon ce tableau :
+Identifie ce que veut l'utilisateur, puis agis selon ce tableau :
 
 | Intention | Action |
 |-----------|--------|
@@ -54,7 +54,7 @@ Identifie ce que veut Nathan, puis agis selon ce tableau :
 | **Créer / mettre à jour une fiche CLIENT** (client actif), gérer ses liens entreprise | → **exocortex-clients** |
 | **Infos légales / facturation / dirigeant d'une ENTREPRISE**, créer/MAJ une fiche entreprise | → **exocortex-entreprises** |
 | **Ajouter un PROSPECT, suivre un prospect, convertir prospect → client** | → **exocortex-prospects** |
-| **Info sur NATHAN lui-même** (ses coordonnées, métier, process) ou **écrire un message dans sa voix** (email, devis, relance) | → **exocortex-personnalite** |
+| **Info sur L'UTILISATEUR lui-même** (ses coordonnées, métier, process) ou **écrire un message dans sa voix** (email, devis, relance) | → **exocortex-personnalite** |
 
 Router = invoquer/suivre le sous-skill correspondant (il porte le schéma détaillé et les
 règles d'écriture de son domaine). En cas de chevauchement (ex. une demande touche client
@@ -84,7 +84,7 @@ numéro demandé → le numéro + la fiche d'où il vient.
 
 ## Frontières (ne pas déclencher)
 
-Ce coffre ne contient QUE les clients de Nathan et leurs entreprises. N'utilise pas
+Ce coffre ne contient QUE les clients de l'utilisateur et leurs entreprises. N'utilise pas
 l'Exocortex pour des informations publiques sur des tiers (le SIRET d'une grande enseigne,
 l'adresse d'un siège connu, le numéro d'une administration → recherche web), pour des
 questions de règles générales (quel taux de TVA s'applique, comment écrire un frontmatter),

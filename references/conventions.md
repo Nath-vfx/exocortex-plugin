@@ -1,7 +1,7 @@
 # Conventions du coffre Exocortex
 
 Référence pour lire et surtout **écrire** des fiches sans casser l'existant.
-Observée sur le coffre de Nathan ; à compléter si de nouveaux dossiers/champs
+Observée sur le coffre de l'utilisateur ; à compléter si de nouveaux dossiers/champs
 apparaissent.
 
 ## Arborescence
@@ -11,7 +11,7 @@ Exocortex/
 ├── Clients/        → une fiche par personne physique (interlocuteur)      type: client
 ├── Entreprises/    → une fiche par personne morale (société du client)    type: entreprise
 ├── Prospects/      → une fiche par entreprise à démarcher                 type: prospect
-├── Personnalité/   → notes sur Nathan lui-même (hub + sous-fiches)        type: personne / référentiel
+├── Personnalité/   → notes sur l'utilisateur lui-même (hub + sous-fiches)        type: personne / référentiel
 ├── Clients.md      → index (MOC) des clients, groupé par statut           type: index
 └── Prospects.md    → index (MOC) des prospects, groupé par secteur        type: index
 ```
@@ -113,17 +113,17 @@ exocortex-prospects (crée entreprise + client, met à jour les deux index).
 
 ## Fiche PERSONNALITÉ (`Personnalité/…`)
 
-Notes sur Nathan lui-même. `Qui suis-je.md` (`type: personne`) est le **hub** : coordonnées
+Notes sur l'utilisateur lui-même. `Qui suis-je.md` (`type: personne`) est le **hub** : coordonnées
 en frontmatter, activité/méthode dans le corps, et une section « Sous-fiches me concernant »
 qui relie en wikilinks les autres notes perso. Les documents de référence (ex.
-`Style rédactionnel — Nathan.md`) portent `type: référentiel`. Toute nouvelle fiche perso se
+`Style rédactionnel.md`) portent `type: référentiel`. Toute nouvelle fiche perso se
 range dans `Personnalité/` puis s'ajoute en wikilink au hub.
 
 ## Règles d'or pour l'écriture
 
 1. **Le nom de fichier = le titre H1**, sans extension. C'est ce que ciblent les
    wikilinks `[[…]]`. Ne renomme pas l'un sans l'autre. Pour la **casse** d'un nom de
-   personne, reprends l'orthographe telle que Nathan l'a fournie (le coffre mélange
+   personne, reprends l'orthographe telle que l'utilisateur l'a fournie (le coffre mélange
    « Fabian GAMMA » et « Catherine Gouy » — il n'y a pas de règle stricte ; ne force
    pas le nom de famille en majuscules).
 2. **Conserve toutes les clés du frontmatter**, même vides. L'homogénéité permet les
@@ -139,7 +139,7 @@ range dans `Personnalité/` puis s'ajoute en wikilink au hub.
    contiennent `+`, `,` ou `:`. Booléens en minuscules (`true`/`false`).
 6. **Source.** Quand l'info vient de Notion, garde/renseigne `source_notion`. Quand elle
    vient d'ailleurs (societe.com, Gmail…), cite-la dans le corps comme dans l'existant.
-   Pour une fiche saisie directement par Nathan (sans import), laisse `source_notion` vide.
+   Pour une fiche saisie directement par l'utilisateur (sans import), laisse `source_notion` vide.
 7. **Index à jour.** Toute création/conversion/suppression de fiche doit se refléter dans
    l'index MOC concerné (Clients.md, Prospects.md) ; sinon la fiche devient orpheline dans
    la vue graphique.

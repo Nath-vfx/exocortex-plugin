@@ -1,6 +1,6 @@
 # Exocortex (plugin)
 
-Navigation, recherche et écriture dans le coffre Obsidian **Exocortex** de Nathan — sa
+Navigation, recherche et écriture dans le coffre Obsidian **Exocortex** de l'utilisateur — sa
 mémoire externe sur ses clients et leurs entreprises (notes Markdown à frontmatter YAML,
 reliées par des wikilinks `[[…]]`).
 
@@ -23,7 +23,7 @@ Un skill **routeur généraliste** + trois **sous-skills** spécialisés et auto
 | `exocortex-clients` | Recherche et écriture des fiches **Clients** (clients actifs) : coordonnées, statut, projet, liens entreprise. |
 | `exocortex-entreprises` | Fiches **Entreprises** : infos légales (SIRET, TVA, forme juridique), facturation, dirigeants. |
 | `exocortex-prospects` | Cycle de vie **prospect** : ajout, suivi, et conversion prospect → client. |
-| `exocortex-personnalite` | Dossier **Personnalité/** : infos sur Nathan lui-même (identité, contact, méthode) et son **style rédactionnel** pour écrire des messages qui sonnent comme lui. |
+| `exocortex-personnalite` | Dossier **Personnalité/** : infos sur l'utilisateur lui-même (identité, contact, méthode) et son **style rédactionnel** pour écrire des messages qui sonnent comme lui. |
 
 ## Ressources partagées
 
@@ -34,7 +34,7 @@ Un skill **routeur généraliste** + trois **sous-skills** spécialisés et auto
 
 ## Principes
 
-- Le coffre ne contient que les clients de Nathan et leurs entreprises ; le plugin ne se
+- Le coffre ne contient que les clients de l'utilisateur et leurs entreprises ; le plugin ne se
   déclenche pas pour des infos publiques sur des tiers ni des questions générales.
 - Écriture chirurgicale : on modifie le champ concerné, on n'écrase jamais l'historique de
   suivi ; les liens client ↔ entreprise restent bidirectionnels.

@@ -1,7 +1,7 @@
 ---
 name: exocortex-entreprises
 description: >
-  Recherche et écriture des fiches ENTREPRISES du coffre Obsidian Exocortex de Nathan
+  Recherche et écriture des fiches ENTREPRISES du coffre Obsidian Exocortex de l'utilisateur
   (dossier Entreprises/, une note par société cliente). Utilise ce skill pour retrouver
   les infos légales et de facturation d'une société d'un client (SIRET/SIREN, TVA
   intracommunautaire, forme juridique, capital, code NAF, adresse, email de facturation,
@@ -9,7 +9,7 @@ description: >
   vers le(s) client(s). Déclenche sur « les infos légales de telle société », « le SIRET/
   la TVA/l'adresse de facturation de telle entreprise », « qui dirige telle société »,
   « crée la fiche entreprise X ». Concerne uniquement les sociétés du portefeuille de
-  Nathan, PAS des entreprises tierces publiques (→ recherche web).
+  l'utilisateur, PAS des entreprises tierces publiques (→ recherche web).
 ---
 
 # Exocortex — Entreprises
@@ -63,7 +63,7 @@ source_notion:
 ## Créer / mettre à jour — règles essentielles
 
 1. **Nom de fichier = titre H1** (`Entreprises/Nom.md`), cible des wikilinks. Garde le nom
-   commercial tel qu'employé par Nathan.
+   commercial tel qu'employé par l'utilisateur.
 2. **Conserve toutes les clés** du frontmatter, même vides.
 3. **Lien bidirectionnel obligatoire.** `clients: [[Prénom NOM]]` côté entreprise doit
    répondre à `entreprises: [[Nom Entreprise]]` côté client. Crée la fiche client manquante
@@ -73,7 +73,7 @@ source_notion:
 6. **Source.** Les données légales viennent souvent de societe.com — cite la source dans le
    corps comme dans l'existant ; renseigne `source_notion` si la fiche vient de Notion.
 
-Avant d'enregistrer, montre à Nathan ce que tu vas écrire et où.
+Avant d'enregistrer, montre à l'utilisateur ce que tu vas écrire et où.
 
 ## Vérification
 

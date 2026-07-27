@@ -1,7 +1,7 @@
 ---
 name: exocortex-prospects
 description: >
-  Gère le pipeline de PROSPECTION du coffre Obsidian Exocortex de Nathan : le dossier
+  Gère le pipeline de PROSPECTION du coffre Obsidian Exocortex de l'utilisateur : le dossier
   Prospects/ (une fiche par entreprise à démarcher, type "prospect") plus l'index
   Prospects.md. Chaque fiche porte le secteur, le statut (ex. "À contacter"), le contact,
   email, téléphone, le site actuel, un lien Loom et des notes d'analyse. Utilise ce skill
@@ -16,7 +16,7 @@ description: >
 
 # Exocortex — Prospects
 
-Le dossier `Prospects/` est le pipeline de prospection de Banan Agency : **une fiche par
+Le dossier `Prospects/` est le pipeline de prospection : **une fiche par
 entreprise à démarcher** (refonte / création de site), regroupées par secteur dans l'index
 `Prospects.md`. Une fiche prospect décrit une cible, pas encore un client. Autonome :
 recherche ET écriture. Localise le coffre comme dans le skill `exocortex` (Étape 0) et
@@ -82,10 +82,10 @@ Le prospect (entreprise) devient un client. Reproduis le modèle Clients/ + Entr
 4. **Mets à jour les index** : retire la ligne du prospect dans `Prospects.md` et ajoute le
    client sous « Clients actifs » dans `Clients.md` (format : `- [[Prénom NOM]] — [[Nom
    Entreprise]] · Projet`).
-5. **Demande à Nathan** s'il veut supprimer/archiver la fiche `Prospects/Nom Entreprise.md`
+5. **Demande à l'utilisateur** s'il veut supprimer/archiver la fiche `Prospects/Nom Entreprise.md`
    (ses infos utiles ont migré vers l'entreprise) ou la conserver pour historique.
 
-Montre toujours le plan de conversion (fichiers créés/modifiés) à Nathan avant d'exécuter.
+Montre toujours le plan de conversion (fichiers créés/modifiés) à l'utilisateur avant d'exécuter.
 
 ## Vérification
 

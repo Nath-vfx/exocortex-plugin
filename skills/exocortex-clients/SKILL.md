@@ -1,7 +1,7 @@
 ---
 name: exocortex-clients
 description: >
-  Recherche et écriture des fiches CLIENTS du coffre Obsidian Exocortex de Nathan
+  Recherche et écriture des fiches CLIENTS du coffre Obsidian Exocortex de l'utilisateur
   (dossier Clients/, une note par interlocuteur). Utilise ce skill pour retrouver une
   donnée d'un client actif (téléphone, email, statut, projet, avancement, lien Notion),
   pour CRÉER une fiche client, METTRE À JOUR un champ (changer un statut, ajouter un
@@ -61,7 +61,7 @@ source_notion:
 ## Créer / mettre à jour — règles essentielles
 
 1. **Nom de fichier = titre H1** (`Clients/Prénom NOM.md`). C'est la cible des wikilinks ;
-   reprends l'orthographe et la casse fournies par Nathan, ne force pas le nom en majuscules.
+   reprends l'orthographe et la casse fournies par l'utilisateur, ne force pas le nom en majuscules.
 2. **Conserve toutes les clés** du frontmatter, même vides — ça garde les fiches homogènes
    et requêtables.
 3. **Lien bidirectionnel obligatoire.** Si tu ajoutes `entreprises: [[X]]`, ajoute
@@ -71,7 +71,7 @@ source_notion:
    ne réécris jamais le corps « Suivi projet » (c'est l'historique), ajoute une puce.
 5. **Formats.** Dates `AAAA-MM-JJ` ; booléens minuscules ; pas de date inventée.
 
-Avant d'enregistrer, montre à Nathan ce que tu vas écrire et où.
+Avant d'enregistrer, montre à l'utilisateur ce que tu vas écrire et où.
 
 ## Vérification
 
