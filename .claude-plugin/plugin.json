@@ -1,6 +1,6 @@
 {
   "name": "exocortex",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "Navigation, recherche et écriture dans un coffre Obsidian Exocortex : un skill routeur généraliste plus des sous-skills spécialisés pour les clients, les entreprises, les prospects et la personnalité du propriétaire du coffre.",
   "author": {
     "name": "Nathan Van Bignoot",
