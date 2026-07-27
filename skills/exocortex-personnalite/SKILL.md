@@ -21,8 +21,8 @@ qui il est, comment il travaille, et comment il s'exprime. C'est un hub évoluti
 usages : répondre à une question perso, et — le plus précieux — **écrire à sa place dans
 sa voix**.
 
-Localise le coffre comme dans le skill `exocortex` (Étape 0) et utilise le script partagé
-`${CLAUDE_PLUGIN_ROOT}/scripts/exo.py`.
+Localise le coffre et son mode d'accès via `${CLAUDE_PLUGIN_ROOT}/references/acces-coffre.md`,
+puis utilise le script partagé `${CLAUDE_PLUGIN_ROOT}/scripts/exo.py`.
 
 ## Lister et lire les fiches perso
 

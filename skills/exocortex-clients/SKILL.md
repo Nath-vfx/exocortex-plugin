@@ -16,7 +16,8 @@ description: >
 
 Gère les fiches du dossier `Clients/` : une note Markdown par personne (l'interlocuteur),
 avec un frontmatter YAML structuré et un corps « Suivi projet ». Autonome : ce skill sait
-chercher ET écrire. Localise le coffre comme dans le skill `exocortex` (Étape 0) et utilise
+chercher ET écrire. Localise le coffre et son mode d'accès via
+`${CLAUDE_PLUGIN_ROOT}/references/acces-coffre.md`, puis utilise
 le script partagé `${CLAUDE_PLUGIN_ROOT}/scripts/exo.py`. Le schéma complet et les règles
 d'or sont dans `${CLAUDE_PLUGIN_ROOT}/references/conventions.md` — **lis-le avant d'écrire**.
 

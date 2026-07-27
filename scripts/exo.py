@@ -5,20 +5,30 @@ Sans dépendance externe. Parse le frontmatter YAML (champs scalaires et listes
 simples) de chaque note .md et offre quelques sous-commandes de recherche.
 
 Usage :
-    python3 exo.py index               [--vault PATH] [--type TYPE]
-    python3 exo.py find  <requête>     [--vault PATH]
-    python3 exo.py get   <nom>         [--vault PATH]
-    python3 exo.py field <clé>         [--vault PATH] [--value V]
-    python3 exo.py links <nom>         [--vault PATH]
+    python3 exo.py index               [--vault PATH] [--type TYPE] [--include-archive]
+    python3 exo.py find  <requête>     [--vault PATH] [--include-archive]
+    python3 exo.py get   <nom>         [--vault PATH] [--include-archive]
+    python3 exo.py field <clé>         [--vault PATH] [--value V] [--include-archive]
+    python3 exo.py links <nom>         [--vault PATH] [--include-archive]
 
 Le coffre est auto-détecté (dossier contenant .obsidian) si --vault est omis ;
 on peut aussi fixer la variable d'environnement EXOCORTEX_VAULT.
+
+`_to_delete/` (coffre démo) et `Prospects/Archive/` (prospects « À oublier ») sont
+exclus par défaut ; `--include-archive` réintègre l'archive.
 """
 import argparse
 import os
 import re
 import sys
+import unicodedata
 from difflib import SequenceMatcher
+
+# Dossiers jamais indexés : coffre démo et dépendances. Le .gitignore du coffre
+# exclut déjà _to_delete/, mais exo.py, lui, l'avalait.
+IGNORED_DIRS = {"_to_delete", "node_modules"}
+# Dossier d'archive prospect, exclu sauf --include-archive (relatif au coffre).
+ARCHIVE_REL = os.path.join("Prospects", "Archive")
 
 
 def find_vault(explicit=None):
@@ -46,6 +56,12 @@ def find_vault(explicit=None):
             if root.count(os.sep) - base.count(os.sep) > 4:
                 dirs[:] = []
     return None
+
+
+def norm(s):
+    """Minuscule sans accents (NFD + suppression des marques combinantes)."""
+    return "".join(c for c in unicodedata.normalize("NFD", s.lower())
+                   if unicodedata.category(c) != "Mn")
 
 
 def split_frontmatter(text):
@@ -81,10 +97,19 @@ def split_frontmatter(text):
     return fm, body
 
 
-def load_notes(vault):
+def load_notes(vault, include_archive=False):
     notes = []
     for root, dirs, files in os.walk(vault):
-        dirs[:] = [d for d in dirs if not d.startswith(".")]
+        rel_root = os.path.relpath(root, vault)
+        kept = []
+        for d in dirs:
+            if d.startswith(".") or d in IGNORED_DIRS:
+                continue
+            rel = os.path.normpath(os.path.join(rel_root, d))
+            if not include_archive and rel == ARCHIVE_REL:
+                continue
+            kept.append(d)
+        dirs[:] = kept
         for f in files:
             if f.endswith(".md"):
                 path = os.path.join(root, f)
@@ -110,16 +135,51 @@ def load_notes(vault):
 
 
 def score(query, note):
-    q = query.lower()
+    q = norm(query)
     best = 0.0
     for cand in (note["name"], note["title"]):
-        c = cand.lower()
+        c = norm(cand)
         if q == c:
             return 1.0
         if q in c:
             best = max(best, 0.9)
         best = max(best, SequenceMatcher(None, q, c).ratio())
     return best
+
+
+def best_matches(notes, name, threshold=0.3, ambiguity=0.1):
+    """Renvoie (meilleure_note|None, candidats_ex_aequo).
+
+    `candidats_ex_aequo` = toutes les notes dont le score est à moins de
+    `ambiguity` du meilleur (et au-dessus du seuil) — sert à afficher une liste
+    plutôt que de trancher en silence entre deux fiches proches.
+    """
+    ranked = sorted(notes, key=lambda n: score(name, n), reverse=True)
+    if not ranked or score(name, ranked[0]) < threshold:
+        return None, []
+    top = score(name, ranked[0])
+    tied = [n for n in ranked
+            if score(name, n) >= threshold and top - score(name, n) < ambiguity]
+    return ranked[0], tied
+
+
+def incoming_links(notes, target):
+    """Notes qui citent `target`, y compris via alias `[[Nom|x]]` ou ancre `[[Nom#s]]`."""
+    pat = re.compile(r"\[\[" + re.escape(target["name"]) + r"\s*(\||#|\]\])")
+    return [m["name"] for m in notes if m is not target and pat.search(m["text"])]
+
+
+def outgoing_links(note):
+    """Cibles des wikilinks sortants, alias/ancre retirés."""
+    return {re.split(r"[|#]", raw, 1)[0].strip()
+            for raw in re.findall(r"\[\[([^\]]+)\]\]", note["text"])}
+
+
+def _print_ambiguous(name, tied):
+    print(f"Plusieurs fiches correspondent à « {name} » :")
+    for n in tied:
+        print(f"  {n['name']:<28} {n['rel']}")
+    print("Précise le nom exact pour lever l'ambiguïté.")
 
 
 def cmd_index(notes, args):
@@ -145,13 +205,15 @@ def cmd_find(notes, args):
 
 
 def cmd_get(notes, args):
-    ranked = sorted(notes, key=lambda n: score(args.name, n), reverse=True)
-    if not ranked or score(args.name, ranked[0]) < 0.3:
+    best, tied = best_matches(notes, args.name)
+    if best is None:
         print(f"Aucune fiche ne correspond à « {args.name} ».")
         return
-    n = ranked[0]
-    print(f"# Fiche : {n['rel']}\n")
-    print(n["text"].rstrip())
+    if len(tied) > 1:
+        _print_ambiguous(args.name, tied)
+        return
+    print(f"# Fiche : {best['rel']}\n")
+    print(best["text"].rstrip())
 
 
 def cmd_field(notes, args):
@@ -174,23 +236,26 @@ def cmd_field(notes, args):
 
 
 def cmd_links(notes, args):
-    ranked = sorted(notes, key=lambda n: score(args.name, n), reverse=True)
-    if not ranked or score(args.name, ranked[0]) < 0.3:
+    best, tied = best_matches(notes, args.name)
+    if best is None:
         print(f"Aucune fiche ne correspond à « {args.name} ».")
         return
-    n = ranked[0]
-    out = set(re.findall(r"\[\[([^\]]+)\]\]", n["text"]))
-    print(f"Liens sortants de « {n['name']} » : "
+    if len(tied) > 1:
+        _print_ambiguous(args.name, tied)
+        return
+    out = outgoing_links(best)
+    print(f"Liens sortants de « {best['name']} » : "
           + (", ".join(sorted(out)) if out else "aucun"))
-    incoming = [m["name"] for m in notes
-                if m is not n and re.search(r"\[\[" + re.escape(n["name"]) + r"\]\]", m["text"])]
-    print(f"Liens entrants (qui citent « {n['name']} ») : "
+    incoming = incoming_links(notes, best)
+    print(f"Liens entrants (qui citent « {best['name']} ») : "
           + (", ".join(sorted(incoming)) if incoming else "aucun"))
 
 
 def main():
     parent = argparse.ArgumentParser(add_help=False)
     parent.add_argument("--vault", help="Chemin du coffre (sinon auto-détecté)")
+    parent.add_argument("--include-archive", action="store_true",
+                        help="Inclure Prospects/Archive/ (exclu par défaut)")
     p = argparse.ArgumentParser(description="Navigation dans le coffre Exocortex",
                                 parents=[parent])
     sub = p.add_subparsers(dest="cmd", required=True)
@@ -205,7 +270,7 @@ def main():
     if not vault:
         print("Coffre introuvable. Précise --vault ou EXOCORTEX_VAULT.", file=sys.stderr)
         sys.exit(2)
-    notes = load_notes(vault)
+    notes = load_notes(vault, args.include_archive)
     if not notes:
         print(f"Aucune note .md trouvée dans {vault}.", file=sys.stderr)
         sys.exit(1)

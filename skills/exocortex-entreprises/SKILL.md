@@ -16,8 +16,9 @@ description: >
 
 Gère les fiches du dossier `Entreprises/` : une note Markdown par société cliente
 (personne morale), avec frontmatter légal/facturation et un corps « Informations légales »
-+ « Dirigeant ». Autonome : recherche ET écriture. Localise le coffre comme dans le skill
-`exocortex` (Étape 0), utilise `${CLAUDE_PLUGIN_ROOT}/scripts/exo.py`, et lis les règles
++ « Dirigeant ». Autonome : recherche ET écriture. Localise le coffre et son mode d'accès
+via `${CLAUDE_PLUGIN_ROOT}/references/acces-coffre.md`, utilise
+`${CLAUDE_PLUGIN_ROOT}/scripts/exo.py`, et lis les règles
 d'or dans `${CLAUDE_PLUGIN_ROOT}/references/conventions.md` **avant d'écrire**.
 
 ## Rechercher une entreprise

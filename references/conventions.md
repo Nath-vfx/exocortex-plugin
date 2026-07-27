@@ -11,9 +11,10 @@ Exocortex/
 ├── Clients/        → une fiche par personne physique (interlocuteur)      type: client
 ├── Entreprises/    → une fiche par personne morale (société du client)    type: entreprise
 ├── Prospects/      → une fiche par entreprise à démarcher                 type: prospect
+│   └── Archive/    → prospects « À oublier » (exclus des recherches exo.py)
 ├── Personnalité/   → notes sur l'utilisateur lui-même (hub + sous-fiches)        type: personne / référentiel
 ├── Clients.md      → index (MOC) des clients, groupé par statut           type: index
-└── Prospects.md    → index (MOC) des prospects, groupé par secteur        type: index
+└── Prospects.md    → index (MOC) des prospects : Pipeline + secteurs + Archive   type: index
 ```
 
 D'autres dossiers viendront (Projets, Devis, Réunions, Factures…). Quand un nouveau
@@ -90,13 +91,14 @@ Une entreprise à démarcher (pas encore cliente). Nommée par son nom commercia
 ```yaml
 ---
 type: prospect
-statut: À contacter        # À contacter → Contacté → RDV → Devis envoyé → Signé / Perdu
+statut: À contacter        # cycle Loom : À contacter → À produire → Contenu envoyé → Devis à envoyer → Devis envoyé → Signé | À oublier
 secteur: "PME – Services"  # BTP / PME – Commerce / PME – Services
 contact:                   # interlocuteur si connu
 email:
 téléphone: "03 81 39 00 85"
 site_actuel: https://…     # site existant, souvent à refondre
 lien_loom:                 # vidéo Loom de prospection
+lien_prototype:            # prototype Claude (livrable de prospection, à côté du Loom)
 source_notion: https://app.notion.com/p/…
 ---
 

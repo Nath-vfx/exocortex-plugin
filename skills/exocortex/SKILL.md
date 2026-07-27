@@ -24,25 +24,16 @@ répondre vite aux recherches simples, et **router** les demandes spécialisées
 sous-skill compétent. Garde-le léger ; la logique métier détaillée vit dans les
 sous-skills.
 
-## Étape 0 — localiser le coffre
+## Étape 0 — localiser le coffre et son mode d'accès
 
-Le coffre est le dossier connecté contenant un sous-dossier `.obsidian`. Ne code jamais
-un chemin absolu en dur (il change selon la session) :
-
-```bash
-find /sessions/*/mnt -maxdepth 3 -name .obsidian -type d 2>/dev/null | head -1 | xargs dirname
-```
-
-Note ce chemin comme `$VAULT`. Le script partagé vit dans le plugin (pas dans le coffre) ;
-appelle-le par son chemin absolu :
+Suis la cascade de `${CLAUDE_PLUGIN_ROOT}/references/acces-coffre.md` : elle donne `$VAULT`
+**et** le mode d'accès (direct au shell vs pont d'appareil), qui change la façon d'écrire.
+Ne code jamais un chemin en dur. Puis recense la structure (elle grandit) avant d'agir :
 
 ```bash
 EXO="${CLAUDE_PLUGIN_ROOT}/scripts/exo.py"
 python3 "$EXO" index --vault "$VAULT"     # cartographie : type, nom, chemin de chaque fiche
 ```
-
-Le coffre **va grandir** (futurs dossiers Projets, Devis, Réunions…). Ne suppose jamais
-la structure : recense-la avec `index` avant d'agir.
 
 ## Étape 1 — comprendre l'intention et router
 
