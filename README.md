@@ -9,7 +9,7 @@ reliées par des wikilinks `[[…]]`).
 Distribué via la marketplace `banan-agency` (`.claude-plugin/marketplace.json`) :
 
 ```
-/plugin marketplace add <repo>
+/plugin marketplace add Nath-vfx/exocortex-plugin
 /plugin install exocortex@banan-agency
 ```
 
