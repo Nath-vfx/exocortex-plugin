@@ -15,7 +15,7 @@ Distribué via la marketplace `banan-agency` (`.claude-plugin/marketplace.json`)
 
 ## Architecture
 
-Un skill **routeur généraliste** + trois **sous-skills** spécialisés et autonomes :
+Un skill **routeur généraliste** + cinq **sous-skills** spécialisés et autonomes :
 
 | Skill | Rôle |
 |-------|------|
@@ -23,6 +23,7 @@ Un skill **routeur généraliste** + trois **sous-skills** spécialisés et auto
 | `exocortex-clients` | Recherche et écriture des fiches **Clients** (clients actifs) : coordonnées, statut, projet, liens entreprise. |
 | `exocortex-entreprises` | Fiches **Entreprises** : infos légales (SIRET, TVA, forme juridique), facturation, dirigeants. |
 | `exocortex-prospects` | Cycle de vie **prospect** : ajout, suivi, et conversion prospect → client. |
+| `exocortex-projets` | Dossier **Projets/** : parcourir/filtrer les projets (statut, client, entreprise), suivre l'avancement, créer un projet (note hub + sous-notes) et maintenir l'index. |
 | `exocortex-personnalite` | Dossier **Personnalité/** : infos sur l'utilisateur lui-même (identité, contact, méthode) et son **style rédactionnel** pour écrire des messages qui sonnent comme lui. |
 
 ## Ressources partagées
@@ -39,4 +40,4 @@ Un skill **routeur généraliste** + trois **sous-skills** spécialisés et auto
 - Écriture chirurgicale : on modifie le champ concerné, on n'écrase jamais l'historique de
   suivi ; les liens client ↔ entreprise restent bidirectionnels.
 - Conçu pour grandir : la structure est recensée dynamiquement, prête pour de futurs
-  dossiers (Projets, Devis, Réunions…).
+  dossiers (Devis, Réunions, Factures…).

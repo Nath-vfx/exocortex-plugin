@@ -8,8 +8,9 @@ description: >
   budget ou avancement d'un projet, dirigeant, lien Notion, suivi d'un dossier — ou
   pour « retrouve dans mon Exocortex / mes notes / mon coffre ». Ce skill localise le
   coffre, fait les recherches simples, et AIGUILLE vers le bon sous-skill : exocortex-
-  clients, exocortex-entreprises (infos légales), exocortex-prospects (ajout/conversion)
-  et exocortex-personnalite (infos sur l'utilisateur, et écrire dans sa voix). En cas de doute,
+  clients, exocortex-entreprises (infos légales), exocortex-prospects (ajout/conversion),
+  exocortex-projets (avancement/gestion des projets) et exocortex-personnalite (infos sur
+  l'utilisateur, et écrire dans sa voix). En cas de doute,
   passe d'abord par ici. NE
   PAS utiliser pour des infos publiques sur des tiers (SIRET/adresse d'une enseigne,
   numéro d'une administration → web), des questions générales (taux de TVA, syntaxe
@@ -45,6 +46,7 @@ Identifie ce que veut l'utilisateur, puis agis selon ce tableau :
 | **Créer / mettre à jour une fiche CLIENT** (client actif), gérer ses liens entreprise | → **exocortex-clients** |
 | **Infos légales / facturation / dirigeant d'une ENTREPRISE**, créer/MAJ une fiche entreprise | → **exocortex-entreprises** |
 | **Ajouter un PROSPECT, suivre un prospect, convertir prospect → client** | → **exocortex-prospects** |
+| **Consulter / créer / mettre à jour un PROJET** (avancement, statut, budget, sous-notes) | → **exocortex-projets** |
 | **Info sur L'UTILISATEUR lui-même** (ses coordonnées, métier, process) ou **écrire un message dans sa voix** (email, devis, relance) | → **exocortex-personnalite** |
 
 Router = invoquer/suivre le sous-skill correspondant (il porte le schéma détaillé et les
